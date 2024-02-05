@@ -1,4 +1,8 @@
 {
     "URLROOT":"http://localhost",
-    "SITENAME":"Laptop price predictor"
+    "SITENAME":"Laptop price predictor",
+    "user":"root",
+    "password":"",
+    "database_name":"mini_framework",
+    "host":"localhost"
 }
