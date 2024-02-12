@@ -19,23 +19,32 @@ class Kernel
 
     public function __construct()
     {
+        
+    }
+    
+    public function main()
+    {
         $configuration = new Configuration();
         $config = $configuration->get_constants();
         $init = new Constants($config);
         
-        if ($config != false) {
+        if ($config != false && isset($GLOBALS['database'])) {
             $database = new Database($config->host,$config->user,$config->password,$config->database_name);
             $database_status = $database->connect();
             
-            if (!$database_status) {
+            if (!$database_status['status']) {
                 LogCreator::create('Error','Error on connecting database');
+            }else{
+                $GLOBALS['database'] = $database_status['value']; 
             }
-        }else{
 
+        }else{
             LogCreator::create('Error','No config file');
         }
-        
+
     }
+
 }
 
 $init = new Kernel();
+$init->main();

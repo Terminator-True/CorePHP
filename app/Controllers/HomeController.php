@@ -1,15 +1,15 @@
 <?php
 
-namespace Controllers\FormController;
+namespace Controllers;
+require APPROOT . '\\app\\Controllers\\Controller.php';
+use Controller;
 
-use Controllers\Controller\Controller;
-
-class FormController extends Controller
+class HomeController extends Controller
 {
 
     public function index()
     {
-        return;
+        return $this->view('home');
     }
 
 }

@@ -27,16 +27,21 @@ class Database
     public function connect()
     {
         
-        $this->db_handler = new mysqli($this->host, $this->user, $this->pass);
+        $this->db_handler = new mysqli($this->host, $this->user, $this->pass,$this->name);
         
         if ($this->db_handler->connect_error) {
-            return false;
+            
+            return [
+                'status'=>false,
+                'value'=>null,
+            ];
         }
 
-        return true;
+        return[
+            'status' => true,
+            'value'=>$this->db_handler
+        ];
     }
-
-    
 
 
 }

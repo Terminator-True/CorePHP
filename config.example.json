@@ -1,6 +1,6 @@
 {
     "URLROOT":"http://localhost",
-    "SITENAME":"Laptop price predictor",
+    "SITENAME":"CorePHP",
     "user":"root",
     "password":"",
     "database_name":"mini_framework",

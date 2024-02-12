@@ -1,7 +1,5 @@
 <?php
-
-
-namespace Controllers\Controller;
+namespace Controllers;
 
 class Controller
 {
@@ -12,11 +10,12 @@ class Controller
      */
     public function view($view_name, $data = [])
     {
-        $route =  '../Views/' . $view_name . '.php';
+        
+        $route =  'app\\Views\\' . $view_name . '.php';
         if (file_exists($route)) {
             require_once $route;
+        }else{
+            die('404');
         }
-
-        die('404');
     }
 }
