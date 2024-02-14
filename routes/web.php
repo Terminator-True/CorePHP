@@ -1,14 +1,30 @@
 <?php
 namespace routes;
+require_once 'Routes.php';
+use Routes;
 
-require_once APPROOT . '\\app\\Controllers\\HomeController.php';
 
-
+// Controllers 
+require_once '..\\app\\Controllers\\HomeController.php';
 use HomeController;
-use routes\Routes;
 
-switch ($_GET['ruta']) {
-    default:
-        Routes::get($_GET['ruta'],HomeController::class,'index',null);
-        break;
+class Router extends Routes
+{
+
+    public function main($url)
+    {
+        $route = $this->getUrl($url);
+
+        switch ($route)
+        {
+            case '/':
+                return $this->get($route,new HomeController,'index',null);
+
+            default:
+                return $this->get($route,HomeController::class,'notFound',null);
+        }
+
+    }
+
 }
+

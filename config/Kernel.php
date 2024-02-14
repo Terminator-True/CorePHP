@@ -5,7 +5,9 @@ require_once 'Constants.php';
 require_once 'Configuration.php';
 require_once 'Database.php';
 require_once '..\\app\\Custom\\LogGenerator.php';
+require_once '..\\routes\\web.php';
 
+use routes\Router;
 use app\config\Constants;
 use app\config\Configuration;
 use app\config\Database;
@@ -13,15 +15,17 @@ use app\Custom\LogCreator;
 
 class Kernel 
 {
-    private $controller = 'HomeController';
-    private $method = 'index';
-
 
     public function __construct()
     {
-        
     }
     
+    public function home($router = new Router)
+    {
+        return $router->main(URLROOT);
+    }
+
+
     public function main()
     {
         $configuration = new Configuration();
@@ -38,10 +42,13 @@ class Kernel
                 $GLOBALS['database'] = $database_status['value']; 
             }
 
-        }else{
+            
+        }elseif($config != true){
             LogCreator::create('Error','No config file');
+            return;
         }
-
+        
+        $this->home();
     }
 
 }

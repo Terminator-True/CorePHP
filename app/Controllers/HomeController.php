@@ -1,8 +1,6 @@
 <?php
 
-namespace Controllers;
-require APPROOT . '\\app\\Controllers\\Controller.php';
-use Controller;
+require_once 'Controller.php';
 
 class HomeController extends Controller
 {
@@ -11,5 +9,10 @@ class HomeController extends Controller
     {
         return $this->view('home');
     }
+    public function notFound()
+    {
+        return $this->view('404');
+    }
 
 }
+

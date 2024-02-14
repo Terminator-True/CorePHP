@@ -1,24 +1,32 @@
 <?php
-namespace routes;
 class Routes 
 {
 
-    public static function get($route, $controller, $function,$parameters)
-    {
-        if ($parameters == null) {
-            return $controller->$function();
-        }
 
-        $controller->$function($parameters);
+    public function getUrl($url)
+    {
+        $url = rtrim($url, '/');
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        $url = explode($url,'/');
+        return $url[count($url)-1];
     }
 
-    public static function post($route, $controller, $function,$parameters)
+    public function get($route, $controller, $method,$parameters)
     {
         if ($parameters == null) {
-            return $controller->$function();
+            return $controller->$method();
         }
 
-        $controller->$function($parameters);
+        return $controller->$method($parameters);
+    }
+
+    public function post($route, $controller, $method,$parameters)
+    {
+        if ($parameters == null) {
+            return $controller->$method();
+        }
+
+        return $controller->$method($parameters);
     }
     
 }
