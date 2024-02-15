@@ -5,7 +5,7 @@ use Routes;
 
 
 // Controllers 
-require_once '..\\app\\Controllers\\HomeController.php';
+require_once '..\\app\\Controllers\\HomeController.php'; //TEST
 use HomeController;
 
 class Router extends Routes
@@ -17,14 +17,19 @@ class Router extends Routes
 
         switch ($route)
         {
-            case '/':
+            case '':
                 return $this->get($route,new HomeController,'index',null);
 
+            case 'example':
+                return $this->get($route,new HomeController,'example',['Hola','Mundo']);
+
             default:
-                return $this->get($route,HomeController::class,'notFound',null);
+                return $this->get($route,new HomeController,'notFound',null);
         }
 
     }
 
 }
 
+$init_routes = new Router;
+$init_routes->main($_SERVER['REQUEST_URI']);

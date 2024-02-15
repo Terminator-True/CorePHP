@@ -5,9 +5,7 @@ require_once 'Constants.php';
 require_once 'Configuration.php';
 require_once 'Database.php';
 require_once '..\\app\\Custom\\LogGenerator.php';
-require_once '..\\routes\\web.php';
 
-use routes\Router;
 use app\config\Constants;
 use app\config\Configuration;
 use app\config\Database;
@@ -18,11 +16,6 @@ class Kernel
 
     public function __construct()
     {
-    }
-    
-    public function home($router = new Router)
-    {
-        return $router->main(URLROOT);
     }
 
 
@@ -48,7 +41,6 @@ class Kernel
             return;
         }
         
-        $this->home();
     }
 
 }

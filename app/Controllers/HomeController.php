@@ -9,9 +9,15 @@ class HomeController extends Controller
     {
         return $this->view('home');
     }
+
     public function notFound()
     {
         return $this->view('404');
+    }
+
+    public function example($params)
+    {
+        return $this->view('test',['saludo'=>$params[0],'value'=>$params[1]]);
     }
 
 }
